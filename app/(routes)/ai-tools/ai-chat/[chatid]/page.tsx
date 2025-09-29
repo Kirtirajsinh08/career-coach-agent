@@ -126,47 +126,50 @@ const AiChat = () => {
   };
 
   return (
-    <div className='relative bg-gray-100 to-purple-50/30 max-h-screen'>
-      {/* Floating background elements */}
+    <div className='relative bg-gray-100 to-purple-50/30 max-h-screen w-full overflow-hidden'>
+      {/* Floating background elements - Responsive sizing */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-40 right-16 w-24 h-24 bg-blue-200/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 right-8 w-16 h-16 bg-pink-200/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '4s'}}></div>
+        <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-20 h-20 sm:w-32 sm:h-32 bg-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 sm:bottom-40 right-8 sm:right-16 w-16 h-16 sm:w-24 sm:h-24 bg-blue-200/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 right-4 sm:right-8 w-12 h-12 sm:w-16 sm:h-16 bg-pink-200/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '4s'}}></div>
       </div>
 
-      {/* Header - Enhanced with animations */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 px-6 shadow-lg sticky z-20 animate-slide-down">
-        <div className="flex items-center justify-between gap-8">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl shadow-lg">
-              <Bot className="w-6 h-6 text-white animate-pulse" />
+      {/* Header - Enhanced with responsive design */}
+      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 px-3 sm:px-4 md:px-6 py-3 sm:py-4 shadow-lg sticky top-0 z-20 animate-slide-down">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 md:gap-8">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto">
+            <div className="p-2 sm:p-2.5 md:p-3 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+              <Bot className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white animate-pulse" />
             </div>
-            <div>
-              <h2 className='font-bold text-xl text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent'>
+            <div className="min-w-0 flex-1">
+              <h2 className='font-bold text-base sm:text-lg md:text-xl text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent truncate'>
                 AI Career Q/A Chat
               </h2>
-              <p className='text-md text-gray-600'>
+              <p className='text-xs sm:text-sm md:text-md text-gray-600 hidden sm:block'>
                 Plan your career smarter with AI advice and personalized roadmaps
+              </p>
+              <p className='text-xs text-gray-600 sm:hidden'>
+                AI-powered career guidance
               </p>
             </div>
           </div>
           <Button 
             onClick={onNewChat}
-            className="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden"
+            className="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden w-full sm:w-auto text-sm sm:text-base py-2 sm:py-2.5 flex items-center justify-center gap-1.5 sm:gap-2"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            <Sparkles className="w-4 h-4 mr-2" />
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 relative z-10" />
             <span className="relative z-10">+ New Chat</span>
           </Button>
         </div>
       </div>
 
-      {/* Messages Area - Enhanced scrolling */}
+      {/* Messages Area - Responsive height and padding */}
       <div 
         ref={chatContainerRef}
-        className='overflow-y-auto px-6 py-6 scroll-smooth custom-scrollbar'
+        className='overflow-y-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 scroll-smooth custom-scrollbar'
         style={{ 
-          height: 'calc(100vh - 180px - 80px)',
+          height: 'calc(100vh - 140px - 70px)',
           scrollBehavior: 'smooth'
         }}
       >
@@ -179,36 +182,36 @@ const AiChat = () => {
           </div>
         )}
 
-        {/* Message List with staggered animations */}
-        <div className="space-y-6 pb-6">
+        {/* Message List with responsive sizing */}
+        <div className="space-y-3 sm:space-y-4 md:space-y-6 pb-4 sm:pb-6">
           {messageList?.map((message, index) => (
             <div key={index} className={`animate-message-appear ${message.role === 'User' ? 'animate-slide-in-right' : 'animate-slide-in-left'}`} style={{animationDelay: `${index * 0.1}s`}}>
               <div
-                className={`flex items-start gap-3 mb-3 group ${
+                className={`flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3 group ${
                   message.role === 'User' ? 'justify-end' : 'justify-start'
                 }`}
               >
-                {/* AI Avatar - Left side */}
+                {/* AI Avatar - Left side - Responsive sizing - Hidden on mobile to prevent overlap */}
                 {message.role !== 'User' && (
-                  <div className="relative flex-shrink-0 transition-all duration-300 group-hover:scale-110">
-                    <div className="p-2.5 rounded-full shadow-lg transition-all duration-300 bg-gradient-to-br from-blue-500 to-cyan-500 group-hover:shadow-blue-500/50">
-                      <Bot className="w-5 h-5 text-white animate-pulse" />
+                  <div className="relative flex-shrink-0 transition-all duration-300 group-hover:scale-110 hidden xs:block">
+                    <div className="p-1.5 sm:p-2 md:p-2.5 rounded-full shadow-lg transition-all duration-300 bg-gradient-to-br from-blue-500 to-cyan-500 group-hover:shadow-blue-500/50">
+                      <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-pulse" />
                     </div>
                     {/* Glow effect */}
                     <div className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 bg-gradient-to-br from-blue-500 to-cyan-500"></div>
                   </div>
                 )}
 
-                {/* Message bubble with enhanced styling */}
+                {/* Message bubble with responsive sizing */}
                 <div
-                  className={`relative p-4 rounded-3xl max-w-[75%] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group ${
+                  className={`relative p-3 sm:p-3.5 md:p-4 rounded-2xl sm:rounded-3xl w-full xs:max-w-[85%] sm:max-w-[80%] md:max-w-[75%] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] group ${
                     message.role === 'User'
-                      ? 'bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-br-lg'
-                      : 'bg-white text-gray-800 border border-gray-100 rounded-bl-lg hover:border-blue-200'
+                      ? 'bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-br-md sm:rounded-br-lg'
+                      : 'bg-white text-gray-800 border border-gray-100 rounded-bl-md sm:rounded-bl-lg hover:border-blue-200'
                   }`}
                 >
-                  {/* Message content */}
-                  <ReactMarkdown className={`prose prose-sm max-w-none transition-all duration-300 ${
+                  {/* Message content - Responsive typography */}
+                  <ReactMarkdown className={`prose prose-xs sm:prose-sm max-w-none transition-all duration-300 ${
                     message.role === 'User' 
                       ? 'prose-invert' 
                       : 'prose-gray group-hover:prose-blue'
@@ -218,22 +221,22 @@ const AiChat = () => {
 
                   {/* Shine effect for user messages */}
                   {message.role === 'User' && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-2xl sm:rounded-3xl"></div>
                   )}
                   
-                  {/* Message tail */}
-                  <div className={`absolute bottom-0 w-4 h-4 transform rotate-45 ${
+                  {/* Message tail - Responsive sizing */}
+                  <div className={`absolute bottom-0 w-3 h-3 sm:w-4 sm:h-4 transform rotate-45 ${
                     message.role === 'User'
-                      ? '-right-1 bg-gradient-to-br from-purple-600 to-blue-600'
-                      : '-left-1 bg-white border-l border-b border-gray-100'
+                      ? '-right-0.5 sm:-right-1 bg-gradient-to-br from-purple-600 to-blue-600'
+                      : '-left-0.5 sm:-left-1 bg-white border-l border-b border-gray-100'
                   }`}></div>
                 </div>
 
-                {/* User Avatar - Right side */}
+                {/* User Avatar - Right side - Responsive sizing - Hidden on mobile to prevent overlap */}
                 {message.role === 'User' && (
-                  <div className="relative flex-shrink-0 transition-all duration-300 group-hover:scale-110">
-                    <div className="p-2.5 rounded-full shadow-lg transition-all duration-300 bg-gradient-to-br from-purple-500 to-pink-500 group-hover:shadow-purple-500/50">
-                      <User className="w-5 h-5 text-white" />
+                  <div className="relative flex-shrink-0 transition-all duration-300 group-hover:scale-110 hidden xs:block">
+                    <div className="p-1.5 sm:p-2 md:p-2.5 rounded-full shadow-lg transition-all duration-300 bg-gradient-to-br from-purple-500 to-pink-500 group-hover:shadow-purple-500/50">
+                      <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     </div>
                     {/* Glow effect */}
                     <div className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 bg-gradient-to-br from-purple-500 to-pink-500"></div>
@@ -241,19 +244,19 @@ const AiChat = () => {
                 )}
               </div>
 
-              {/* Enhanced Loader with animations */}
+              {/* Enhanced Loader with responsive sizing */}
               {loading && messageList?.length - 1 === index && (
-                <div className='flex items-start gap-3 animate-bounce-in'>
-                  <div className="p-2.5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg animate-pulse">
-                    <Bot className="w-5 h-5 text-white" />
+                <div className='flex items-start gap-2 sm:gap-3 animate-bounce-in'>
+                  <div className="p-1.5 sm:p-2 md:p-2.5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg animate-pulse hidden xs:block">
+                    <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <div className='p-4 rounded-3xl rounded-bl-lg bg-white border border-gray-100 flex items-center gap-3 shadow-lg'>
+                  <div className='p-3 sm:p-3.5 md:p-4 rounded-2xl sm:rounded-3xl rounded-bl-md sm:rounded-bl-lg bg-white border border-gray-100 flex items-center gap-2 sm:gap-3 shadow-lg'>
                     <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full animate-bounce"></div>
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                     </div>
-                    <span className="text-gray-600 font-medium">AI is thinking...</span>
+                    <span className="text-gray-600 font-medium text-xs sm:text-sm">AI is thinking...</span>
                   </div>
                 </div>
               )}
@@ -265,26 +268,26 @@ const AiChat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Enhanced Input Box with animations */}
-      <div className='fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200/50 p-4 shadow-2xl z-30'>
-        <div className='max-w-6xl mx-auto px-6'>
-          <div className='flex items-center gap-3'>
+      {/* Enhanced Input Box - Fully responsive */}
+      <div className='fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200/50 p-2 sm:p-3 md:p-4 shadow-2xl z-30'>
+        <div className='max-w-6xl mx-auto px-2 sm:px-4 md:px-6'>
+          <div className='flex items-center gap-2 sm:gap-3'>
             <div className='flex-1 relative group'>
               <Input
                 placeholder='Type your message here...'
                 value={userInput}
                 onChange={(event) => setUserInput(event.target.value)}
                 onKeyPress={handleKeyPress}
-                className='bg-gray-50/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl px-6 py-4 text-base focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-300 hover:border-gray-300 hover:shadow-lg group-hover:bg-white'
+                className='bg-gray-50/80 backdrop-blur-sm border-2 border-gray-200 rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-sm sm:text-base focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-300 hover:border-gray-300 hover:shadow-lg group-hover:bg-white'
                 disabled={loading}
               />
               {/* Input glow effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"></div>
+              <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"></div>
             </div>
             <Button 
               onClick={onSend} 
               disabled={loading || !userInput.trim()}
-              className={`group p-4 rounded-2xl transition-all duration-300 relative overflow-hidden ${
+              className={`group p-2.5 sm:p-3 md:p-4 rounded-xl sm:rounded-2xl transition-all duration-300 relative overflow-hidden ${
                 loading || !userInput.trim() 
                   ? 'bg-gray-300 cursor-not-allowed scale-95' 
                   : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 hover:scale-110 hover:rotate-2 shadow-lg hover:shadow-2xl hover:shadow-purple-500/25'
@@ -294,9 +297,9 @@ const AiChat = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               
               {loading ? (
-                <LoaderCircle className='animate-spin w-6 h-6 text-white' />
+                <LoaderCircle className='animate-spin w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white' />
               ) : (
-                <Send className='w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1' />
+                <Send className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1' />
               )}
             </Button>
           </div>
@@ -361,7 +364,13 @@ const AiChat = () => {
         }
         
         .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
+          width: 4px;
+        }
+        
+        @media (min-width: 640px) {
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+          }
         }
         
         .custom-scrollbar::-webkit-scrollbar-track {

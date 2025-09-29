@@ -11,9 +11,9 @@ export default function Home() {
       <header className="backdrop-blur-md bg-white/80 border-b border-gray-200/50 shadow-lg sticky top-0 z-50">
         <nav className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Global">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-3">
               <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl shadow-lg">
-                <Image src={'/onlyLogo.png'} alt="CareerSphere AI" width={30} height={30} className="brightness-0 invert" />
+                <Image src={'/onlyLogo.png'} alt="CareerSphere AI" width={40} height={40} className="brightness-0 invert" />
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
@@ -52,6 +52,41 @@ export default function Home() {
           <div className="absolute top-20 left-10 w-40 h-40 bg-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-32 right-16 w-32 h-32 bg-blue-200/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
           <div className="absolute top-1/3 right-8 w-24 h-24 bg-pink-200/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '4s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative z-10">
+          {/* Announcement Banner */}
+
+          {/* Main Hero Content */}
+          <div className="text-center space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+                Accelerate Your
+                <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent block">
+                  Career Journey
+                </span>
+              </h1>
+              <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full"></div>
+            </div>
+
+            <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Transform your professional future with AI-powered career guidance, resume optimization, and personalized roadmaps designed for ambitious professionals.
+            </p>
+
+            {/* CTA Button */}
+            <div className="pt-6">
+              <a 
+                className="group inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 border border-transparent text-white text-lg font-bold rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-200 py-4 px-8 transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-purple-500/25 relative overflow-hidden"
+                href="/dashboard"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <span className="relative z-10">Start Your Journey</span>
+                <svg className="relative z-10 w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
