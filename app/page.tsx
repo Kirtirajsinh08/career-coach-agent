@@ -11,9 +11,9 @@ export default function Home() {
       <header className="backdrop-blur-md bg-white/80 border-b border-gray-200/50 shadow-lg sticky top-0 z-50">
         <nav className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Global">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl shadow-lg">
-                <Image src={'/logo.svg'} alt="CareerSphere AI" width={40} height={40} className="brightness-0 invert" />
+            <div className="flex items-center gap-1">
+              <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl shadow-lg">
+                <Image src={'/onlyLogo.png'} alt="CareerSphere AI" width={30} height={30} className="brightness-0 invert" />
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">

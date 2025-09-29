@@ -14,7 +14,6 @@ import { useAuth } from '@clerk/nextjs';
         const [file, setFile] = useState<any>();
         const [loading, setLoading] = useState(false);
         const router = useRouter();
-        const { has } = useAuth();
 
         const onFileChange = (event: any) => {
             const file = event.target.files?.[0];
@@ -31,18 +30,6 @@ import { useAuth } from '@clerk/nextjs';
             formData.append('recordId', recordId);
             formData.append('resumeFile', file);
             // formData.append('aiAgentType', '/ai-tools/ai-resume-analyser')
-
-            // @ts-ignore
-            const hasSubscriptionEnabled = await has({plan: 'pro'})
-            if(!hasSubscriptionEnabled) {
-                const resultHistory = await axios.get('/api/history')
-                const historyList = resultHistory.data;
-                const isPresent = await historyList.find((item: any) => item?.aiAgentType == 'ai-tools/ai-resume-analyser')
-                router.push('/billing')
-                if(isPresent){
-                    return null;
-                }
-            }
 
             const result = await axios.post('/api/ai-resume-agent', formData)
             console.log(result.data)
